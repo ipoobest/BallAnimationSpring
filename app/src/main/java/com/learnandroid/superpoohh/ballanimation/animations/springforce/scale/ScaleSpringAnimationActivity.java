@@ -1,4 +1,4 @@
-package com.learnandroid.superpoohh.ballanimation.animations.springforce.scaleSpringAnimation;
+package com.learnandroid.superpoohh.ballanimation.animations.springforce.scale;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
-import com.learnandroid.superpoohh.ballanimation.animations.springforce.rotationSpringAnimation.RotationSpringAnimation;
 
 import io.github.kbiakov.codeview.CodeView;
 
@@ -18,7 +17,7 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, infor, tvDescription;
 
-    public static float dampingValue = 0.1f, stiffnessValue = 100;
+    ScaleSpringAnimation scaleSpringAnimation;
 
 
     @Override
@@ -29,7 +28,7 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
         innitInstances();
 
         animateView.setImageResource(R.drawable.pokeball);
-        ScaleSpringAnimation scaleSpringAnimation =
+        scaleSpringAnimation =
                 new ScaleSpringAnimation(animateView, infor);
 
     }
@@ -58,16 +57,19 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
-            int progressValue = progress;
-            if(progressValue != 0){
+            float dampingValue;
+            if(progress != 0){
                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
             }else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }
+            scaleSpringAnimation.setDampingValue(dampingValue);
         } else if (seekBar == sbStiffness) {
+            float stiffnessValue;
             stiffnessValue = progress;
+            scaleSpringAnimation.setStiffnessValue(stiffnessValue);
             tvStiffness.setText(String.valueOf(stiffnessValue));
         }
 

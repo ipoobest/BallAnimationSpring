@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".animations.springforce.positionSpring.PositionSpringAnimationActivity">
+    tools:context=".animations.springforce.position.PositionSpringAnimationActivity">
 
 
 
@@ -197,13 +197,7 @@
         </RelativeLayout>
 
 
-        <!--<at.markushi.ui.CircleButton-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_width="84dip"-->
-        <!--android:layout_height="84dip"-->
-        <!--android:src="@drawable/ic_play_arrow_white_48dp"-->
-        <!--app:cb_color="@color/colorPrimaryDark"-->
-        <!--app:cb_pressedRingWidth="8dip" />-->
+
 
 
     </LinearLayout>

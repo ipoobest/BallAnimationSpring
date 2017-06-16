@@ -1,8 +1,7 @@
-package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotationSpringAnimation;
+package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation;
 
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import static com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil.createSpringAnimation;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.rotationSpringAnimation.RotationSpringAnimationActivity.dampingValue;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.rotationSpringAnimation.RotationSpringAnimationActivity.stiffnessValue;
 
 /**
  * Created by superpoohh on 6/14/2017.
@@ -22,11 +19,20 @@ public class RotationSpringAnimation {
 
     private static final float INITIAL_ROTATION = 0f;
 
+    private float dampingValue = 0.1f, stiffnessValue = 100f;
     private SpringAnimation rotationAnimation;
     private float previousRotation;
     private float currentRotation ;
     private View animateView;
     private TextView infoView;
+
+    public void setDampingValue(float dampingValue) {
+        this.dampingValue = dampingValue;
+    }
+
+    public void setStiffnessValue(float stiffnessValue) {
+        this.stiffnessValue = stiffnessValue;
+    }
 
     public RotationSpringAnimation(ImageView animateView, TextView infoView) {
         // create a rotation SpringAnimation

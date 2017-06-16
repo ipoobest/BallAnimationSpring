@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.learnandroid.superpoohh.ballanimation.adapter.AnimationAdapter;
-import com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring.PositionSpringAnimationActivity;
-import com.learnandroid.superpoohh.ballanimation.animations.springforce.rotationSpringAnimation.RotationSpringAnimationActivity;
-import com.learnandroid.superpoohh.ballanimation.animations.springforce.scaleSpringAnimation.ScaleSpringAnimationActivity;
+import com.learnandroid.superpoohh.ballanimation.animations.springforce.position.PositionSpringAnimationActivity;
+import com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation.RotationSpringAnimationActivity;
+import com.learnandroid.superpoohh.ballanimation.animations.springforce.scale.ScaleSpringAnimationActivity;
 import com.learnandroid.superpoohh.ballanimation.model.AnimationItem;
 import java.util.ArrayList;
 import java.util.List;

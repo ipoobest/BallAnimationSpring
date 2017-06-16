@@ -1,15 +1,13 @@
-package com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring;
+package com.learnandroid.superpoohh.ballanimation.animations.springforce.position;
 
 import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil;
 
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring.PositionSpringAnimationActivity.dampingValue;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring.PositionSpringAnimationActivity.stiffnessValue;
+
 
 /**
  * Created by superpoohh on 6/13/2017.
@@ -18,11 +16,20 @@ import static com.learnandroid.superpoohh.ballanimation.animations.springforce.p
 public class PositionSpringAnimation {
     private View animatedView;
 
+    private float dampingValue = 0.1f, stiffnessValue = 100f;
     private SpringAnimation xAnimation;
     private SpringAnimation yAnimation;
 
     private float dX;
     private float dY;
+
+    public void setDampingValue(float dampingValue) {
+        this.dampingValue = dampingValue;
+    }
+
+    public void setStiffnessValue(float stiffnessValue) {
+        this.stiffnessValue = stiffnessValue;
+    }
 
     public PositionSpringAnimation(final View animatedView) {
         if (animatedView != null) {

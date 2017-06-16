@@ -16,12 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CodeActivity" />
-        <activity android:name=".animations.springforce.positionSpring.PositionSpringAnimationActivity"
+        <activity android:name=".animations.springforce.position.PositionSpringAnimationActivity"
             android:label="PositionSpring"/>
-        <activity android:name=".animations.springforce.rotationSpringAnimation.RotationSpringAnimationActivity"
+        <activity android:name=".animations.springforce.rotation.RotationSpringAnimationActivity"
             android:label="RotationSpring"/>
-        <activity android:name=".animations.springforce.scaleSpringAnimation.ScaleSpringAnimationActivity"
+        <activity android:name=".animations.springforce.scale.ScaleSpringAnimationActivity"
             android:label="ScaleSpring"></activity>
     </application>
 

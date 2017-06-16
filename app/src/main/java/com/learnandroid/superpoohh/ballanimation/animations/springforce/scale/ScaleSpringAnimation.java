@@ -1,4 +1,4 @@
-package com.learnandroid.superpoohh.ballanimation.animations.springforce.scaleSpringAnimation;
+package com.learnandroid.superpoohh.ballanimation.animations.springforce.scale;
 
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
@@ -12,8 +12,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import static com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil.createSpringAnimation;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.scaleSpringAnimation.ScaleSpringAnimationActivity.dampingValue;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.scaleSpringAnimation.ScaleSpringAnimationActivity.stiffnessValue;
+
 
 /**
  * Created by superpoohh on 6/15/2017.
@@ -23,6 +22,7 @@ public class ScaleSpringAnimation {
     private static final float INITIAL_SCALE = 1f;
     private float scaleFactor = 1f;
 
+    private float dampingValue = 0.1f, stiffnessValue = 100f;
     private SpringAnimation scaleXAnimation ;
     private SpringAnimation scaleYAnimation;
     private ScaleGestureDetector scaleGestureDetector;
@@ -30,12 +30,20 @@ public class ScaleSpringAnimation {
     private View animateView;
     private TextView infoView;
 
+    public void setDampingValue(float dampingValue) {
+        this.dampingValue = dampingValue;
+    }
+
+    public void setStiffnessValue(float stiffnessValue) {
+        this.stiffnessValue = stiffnessValue;
+    }
+
     public ScaleSpringAnimation(ImageView animateView, TextView infoView) {
         this.infoView = infoView;
         this.animateView = animateView;
         // create scaleX and scaleY animations
         scaleXAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_X,
-                INITIAL_SCALE, SpringForce.STIFFNESS_HIGH, SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
+                INITIAL_SCALE, stiffnessValue, dampingValue);
         scaleYAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_Y,
                 INITIAL_SCALE, stiffnessValue, dampingValue);
         updateInfoView();
