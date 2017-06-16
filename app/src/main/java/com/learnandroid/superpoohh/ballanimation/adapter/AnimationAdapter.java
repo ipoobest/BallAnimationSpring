@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.learnandroid.superpoohh.ballanimation.R;
 import com.learnandroid.superpoohh.ballanimation.model.AnimationItem;
 
 import java.util.List;
@@ -28,13 +29,14 @@ public class AnimationAdapter extends RecyclerView.Adapter<AnimationAdapter.Anim
     @Override
     public AnimationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_1, parent, false);
+                .inflate(R.layout.menu_item, parent, false);
         return new AnimationHolder(view);
     }
 
     @Override
     public void onBindViewHolder(AnimationHolder holder, int position) {
         holder.mTitle.setText(mItems.get(position).getTitle());
+        holder.mDescription.setText(mItems.get(position).getDescription());
 
     }
 
@@ -45,15 +47,17 @@ public class AnimationAdapter extends RecyclerView.Adapter<AnimationAdapter.Anim
 
 
 
-        private TextView mTitle;
+
 
         class AnimationHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
-            public final TextView mTitle;
+            public final TextView mTitle,mDescription;
 
             public AnimationHolder(android.view.View itemView) {
                 super(itemView);
-                mTitle = (TextView) itemView.findViewById(android.R.id.text1);
-                mTitle.setOnClickListener(new View.OnClickListener() {
+                mTitle = (TextView) itemView.findViewById(R.id.tv_name);
+                mDescription = (TextView) itemView.findViewById(R.id.tv_description);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mContext.startActivity(mItems.get(getAdapterPosition()).getIntent());

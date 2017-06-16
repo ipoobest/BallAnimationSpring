@@ -1,24 +1,31 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.position;
 
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
+import com.learnandroid.superpoohh.ballanimation.fragment.DescriptionBottomSheetDialogFragment;
 
+import hugo.weaving.DebugLog;
 import io.github.kbiakov.codeview.CodeView;
-
+@DebugLog
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
+    private Button dialogDescription;
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, tvDescription;
 
 
     PositionSpringAnimation positionSpringAnimation;
+//    BottomSheetDialogFragment BottomSheet;
 
 
     @Override
@@ -41,11 +48,20 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvDescription.setText(R.string.description_position_spring);
 
+
+//        dialogDescription = (Button)findViewById(R.id.dialog_description);
+
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
 
-        CodeView codeView = (CodeView) findViewById(R.id.code_view);
-        codeView.setCode(getString(R.string.listing_position_spring));
+//        BottomSheet = DescriptionBottomSheetDialogFragment.newInstance("test");
+//        dialogDescription.setOnClickListener(this);
+
+        //TODO: callback function
+//        CodeView codeView = (CodeView) findViewById(R.id.code_view);
+//        codeView.setCode(getString(R.string.listing_position_spring));
+
+
 
         animateView.setImageResource(R.drawable.pokeball);
         positionSpringAnimation = new PositionSpringAnimation(animateView);
@@ -82,5 +98,6 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
+
 
 }

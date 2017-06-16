@@ -7,12 +7,13 @@ import android.content.Intent;
  */
 
 public class AnimationItem {
-    private  String mTitle;
+    private  String mTitle, mDescription;
     private  Intent mIntent;
 
-    public AnimationItem(String title, android.content.Intent intent) {
+    public AnimationItem(String title,String Description, android.content.Intent intent) {
         mTitle = title;
         mIntent = intent;
+        mDescription = Description;
     }
 
     public android.content.Intent getIntent() {
@@ -21,5 +22,9 @@ public class AnimationItem {
 
     public String getTitle() {
         return mTitle;
+    }
+
+    public String getDescription() {
+        return mDescription;
     }
 }

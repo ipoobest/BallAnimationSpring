@@ -1,6 +1,7 @@
 package com.learnandroid.superpoohh.ballanimation;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +14,12 @@ import com.learnandroid.superpoohh.ballanimation.model.AnimationItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
+
 public class ListActivity extends AppCompatActivity {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
@@ -25,17 +29,19 @@ public class ListActivity extends AppCompatActivity {
 
         List<AnimationItem> items = new ArrayList<>();
 
-        items.add(new AnimationItem(getString(R.string.position),
+
+        items.add(new AnimationItem(getString(R.string.position),"hello",
                 new Intent(this, PositionSpringAnimationActivity.class)));
 
 
-        items.add(new AnimationItem(getString(R.string.rotation),
+        items.add(new AnimationItem(getString(R.string.rotation),"hello",
                 new Intent(this, RotationSpringAnimationActivity.class)));
 
-        items.add(new AnimationItem(getString(R.string.scale),
+        items.add(new AnimationItem(getString(R.string.scale),"hello",
                 new Intent(this, ScaleSpringAnimationActivity.class)));
 
         recyclerView.setAdapter(new AnimationAdapter(items, this));
+
 
 
 
