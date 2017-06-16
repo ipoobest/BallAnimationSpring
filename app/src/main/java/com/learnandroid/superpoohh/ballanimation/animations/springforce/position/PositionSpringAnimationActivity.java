@@ -49,13 +49,11 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         tvDescription.setText(R.string.description_position_spring);
 
 
-//        dialogDescription = (Button)findViewById(R.id.dialog_description);
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
 
-//        BottomSheet = DescriptionBottomSheetDialogFragment.newInstance("test");
-//        dialogDescription.setOnClickListener(this);
+
 
         //TODO: callback function
 //        CodeView codeView = (CodeView) findViewById(R.id.code_view);
