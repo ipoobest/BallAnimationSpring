@@ -7,9 +7,6 @@ import android.view.ViewTreeObserver;
 
 import com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil;
 
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring.PositionSpringAnimationActivity.dampingValue;
-import static com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring.PositionSpringAnimationActivity.stiffnessValue;
-
 /**
  * Created by superpoohh on 6/13/2017.
  */
@@ -17,6 +14,7 @@ import static com.learnandroid.superpoohh.ballanimation.animations.springforce.p
 public class PositionSpringAnimation {
     private View animatedView;
 
+    private float dampingValue = 0.1f, stiffnessValue = 100f;
     private SpringAnimation xAnimation;
     private SpringAnimation yAnimation;
 
@@ -29,6 +27,14 @@ public class PositionSpringAnimation {
             animatedView.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);
             this.animatedView.setOnTouchListener(touchListener);
         }
+    }
+
+    public void setDampingValue(float dampingValue) {
+        this.dampingValue = dampingValue;
+    }
+
+    public void setStiffnessValue(float stiffnessValue) {
+        this.stiffnessValue = stiffnessValue;
     }
 
     // create X and Y animations for view's initial position once it's known

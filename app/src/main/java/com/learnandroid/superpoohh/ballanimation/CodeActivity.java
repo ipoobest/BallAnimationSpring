@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import io.github.kbiakov.codeview.CodeView;
 
-
+/**
+ * ถ้าไม่ได้ใช้ก็ลบออก
+ */
+@Deprecated
 public class CodeActivity extends AppCompatActivity {
 
     @Override

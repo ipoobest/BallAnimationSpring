@@ -15,11 +15,9 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
-    private float damping, stiffness;
     private TextView tvDimping, tvStiffness, tvDescription;
 
-    public static float dampingValue, stiffnessValue;
-
+    PositionSpringAnimation positionSpringAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +48,26 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
 
         animateView.setImageResource(R.drawable.pokeball);
-        PositionSpringAnimation positionSpringAnimation =
-                new PositionSpringAnimation(animateView);
+        positionSpringAnimation = new PositionSpringAnimation(animateView);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
-            int progressValue = progress;
-            if (progressValue != 0) {
-                dampingValue = (float) (progress / 10.0);
+            float dampingValue;
+            if (progress != 0) {
+
+                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
             } else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }
+            positionSpringAnimation.setDampingValue(dampingValue);
         } else if (seekBar == sbStiffness) {
+            float stiffnessValue;
             stiffnessValue = progress;
+            positionSpringAnimation.setStiffnessValue(stiffnessValue);
             tvStiffness.setText(String.valueOf(stiffnessValue));
         }
 
