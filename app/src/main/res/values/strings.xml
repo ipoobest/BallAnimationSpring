@@ -1,0 +1,234 @@
+<resources>
+    <string name="app_name">SpringAnimation</string>
+    <string name="position">PositionSpringAnimation</string>
+    <string name="rotation">RotationSpringAnimation</string>
+    <string name="scale">ScaleSpringAnimation</string>
+
+    <string name="listing_position_spring">
+    public class PositionSpringAnimation { \n
+    private View animatedView;\n\n
+
+    private SpringAnimation xAnimation;\n
+    private SpringAnimation yAnimation;\n\n
+
+    private float dX;\n
+    private float dY;\n\n
+
+    public PositionSpringAnimation(final View animatedView) {\n
+     \t   if (animatedView != null) {\n
+     \t\t       this.animatedView = animatedView;\n
+     \t\t       animatedView.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);\n
+     \t\t       this.animatedView.setOnTouchListener(touchListener);\n
+     \t   }\n
+    }\n\n\n
+
+        <!--create X and Y animations for view's initial position once it's known\n-->
+
+        private ViewTreeObserver.OnGlobalLayoutListener globalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {\n
+    \t    @Override\n
+    \t\t    public void onGlobalLayout() {\n
+    \t\t        xAnimation = SpringAnimationUtil.createSpringAnimation(animatedView, SpringAnimation.X, animatedView.getX(),\n
+    \t\t\t                stiffnessValue, dampingValue);\n
+    \t\t        yAnimation = SpringAnimationUtil.createSpringAnimation(animatedView, SpringAnimation.Y, animatedView.getY(),\n
+    \t\t\t                stiffnessValue, dampingValue);\n
+    \t    }\n
+    };\n\n
+
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {\n
+    \t     @Override\n
+    \t \t     public boolean onTouch(View v, MotionEvent event) {\n
+    \t \t         switch (event.getActionMasked()){\n
+    \t \t \t             case MotionEvent.ACTION_DOWN:\n
+        <!--// capture the difference between view's top left corner and touch point-->
+        \t \t \t \t                dX = v.getX() - event.getRawX();\n
+    \t \t \t \t                dY = v.getY() - event.getRawY();\n
+        <!--// cancel animations-->
+        \t \t\t \t               xAnimation.cancel();\n
+    \t \t \t\t                 yAnimation.cancel();\n
+     \t\t\t             break;\n
+     \t \t            case MotionEvent.ACTION_MOVE:\n
+
+        <!--a different approach would be to change the view's LayoutParams.-->
+
+        \t \t \t                animatedView.animate()\n
+     \t \t \t \t                       .x(event.getRawX() + dX)\n
+     \t \t \t \t                       .y(event.getRawY() + dY)\n
+    \t \t \t \t                        .setDuration(0)\n
+    \t \t \t \t                        .start();\n
+    \t \t \t\t                 break;\n
+    \t \t             case MotionEvent.ACTION_UP:\n
+    \t \t \t\t                 xAnimation.start();\n
+   \t \t \t \t                 yAnimation.start();\n
+   \t \t \t \t                 break;\n
+   \t\t \t \t          }\n
+  \t \t\t           return true;\n
+   \t  \t    }\n
+    \t};\n
+}
+
+
+    </string>
+
+    <string name="listing_rotation_spring">
+
+    public class RotationSpringAnimation {\n\n
+
+    private static final float INITIAL_ROTATION = 0f;\n
+
+    private SpringAnimation rotationAnimation;\n
+    private float previousRotation;\n
+    private float currentRotation ;\n
+    private View animateView;\n
+    private TextView infoView;\n\n
+
+    public RotationSpringAnimation(ImageView animateView, TextView infoView) {\n
+        <!--// create a rotation SpringAnimation\n-->
+        \t      rotationAnimation = createSpringAnimation(animateView,\n
+    \t \t             SpringAnimation.ROTATION, INITIAL_ROTATION,\n
+    \t \t             stiffnessValue, dampingValue);\n
+    \t     this.infoView = infoView;\n
+   \t      this.animateView = animateView;\n
+   \t      this.animateView.setOnTouchListener(touchListener);\n
+   \t      rotationAnimation.addUpdateListener(updateListener);\n
+   \t     updateInfoView();\n
+    }\n\n
+
+    public View.OnTouchListener getTouchListener() {\n
+    \t     return touchListener;\n
+    }\n\n
+
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {\n
+    \t     double centerX;\n
+    \t     double centerY;\n
+   \t      float x;\n
+   \t      float y;\n
+        <!--// angle calculation-->
+        \t       private void updateRotation(View view){\n
+  \t           currentRotation = view.getRotation() +\n
+  \t \t                   (float) Math.toDegrees(Math.atan2(x - centerX, centerY - y));\n
+        }\n
+        @Override\n
+        public boolean onTouch(View view, MotionEvent event) {\n
+ \t            centerX = view.getWidth() / 2.0;\n
+ \t            centerY = view.getHeight() / 2.0;\n
+ \t            x = event.getX();\n
+ \t            y = event.getY();\n
+ \t            switch (event.getActionMasked()) {\n
+\t \t                 case MotionEvent.ACTION_DOWN:\n
+\t \t                     <!--// cancel so we can grab the view during previous animation-->
+        \t \t                      rotationAnimation.cancel();\n
+\t \t                      updateRotation(view);\n
+\t \t                      break;\n
+\t                case MotionEvent.ACTION_MOVE:\n
+        <!--// save current rotation-->
+        \t \t                      previousRotation = currentRotation;\n
+\t \t                      updateRotation(view);\n
+        <!--// rotate view by angle difference-->
+        \t \t                      float angle = currentRotation - previousRotation;\n
+\t \t                      view.setRotation(view.getRotation() + angle);// += angle;\n
+\t \t                      updateInfoView();\n
+\t \t                     break;\n
+\t                case MotionEvent.ACTION_UP:\n
+\t \t                     rotationAnimation.start();\n
+\t \t                      break;\n
+\t \t              }\n
+\t \t              return true;\n
+\t        }\n
+    };\n\n
+
+    private DynamicAnimation.OnAnimationUpdateListener updateListener = new DynamicAnimation.OnAnimationUpdateListener() {\n
+\t         @Override\n
+\t         public void onAnimationUpdate(DynamicAnimation animation, float value, float velocity) {\n
+\t \t             updateInfoView();\n
+\t \t         }\n
+\t     };\n\n
+
+    public void updateInfoView(){\n
+\t         if (animateView != null &amp;&amp; infoView != null) {\n
+\t \t             infoView.setText(String.format(Locale.getDefault(), "%.2f", animateView.getRotation()));\n
+\t \t         }\n
+\t     }\n
+}
+
+
+
+    </string>
+
+    <string name="listing_scale_spring">
+public class ScaleSpringAnimation {\n
+\t    private static final float INITIAL_SCALE = 1f;\n
+\t    private float scaleFactor = 1f;\n\n
+
+\t    private SpringAnimation scaleXAnimation ;\n
+\t    private SpringAnimation scaleYAnimation;\n
+\t    private ScaleGestureDetector scaleGestureDetector;\n\n
+
+\t    private View animateView;\n
+\t    private TextView infoView;\n\n
+
+\t    public ScaleSpringAnimation(ImageView animateView, TextView infoView) {\n
+\t\t        this.infoView = infoView;\n
+\t\t        this.animateView = animateView;\n
+        // create scaleX and scaleY animations\n
+\t\t        scaleXAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_X,\n
+\t\t\t                INITIAL_SCALE, stiffnessValue, dampingValue);\n
+\t\t        scaleYAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_Y,\n
+\t\t\t                INITIAL_SCALE, stiffnessValue, dampingValue);\n
+\t\t        updateInfoView();\n
+\t\t        setupPinchToZoom();\n
+\t\t        this.animateView.setOnTouchListener(touchListener);\n
+\t\t       scaleXAnimation.addUpdateListener(updateListener);\n
+\t    }\n\n
+
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {\n
+\t\t        @Override\n
+\t\t        public boolean onTouch(View v, MotionEvent event) {\n
+\t\t\t            if (event.getAction() == MotionEvent.ACTION_UP) {\n
+\t\t\t\t                scaleXAnimation.start();\n
+\t\t\t\t                scaleYAnimation.start();\n
+\t\t\t            } else {\n
+                // cancel animations so we can grab the view during previous animation\n
+\t\t\t\t                scaleXAnimation.cancel();\n
+\t\t\t\t                 scaleYAnimation.cancel();\n
+                // pass touch event to ScaleGestureDetector\n
+\t\t\t\t                 scaleGestureDetector.onTouchEvent(event);\n
+\t\t\t            }\n
+\t\t             return true;\n
+\t        }\n
+    };\n\n
+
+    private void setupPinchToZoom() {\n
+\t        scaleGestureDetector = new ScaleGestureDetector(animateView.getContext(),\n
+\t\t                new ScaleGestureDetector.SimpleOnScaleGestureListener(){\n
+\t\t\t                   @Override\n
+\t\t\t                    public boolean onScale(ScaleGestureDetector detector) {\n
+\t\t\t\t                        scaleFactor *= detector.getScaleFactor();\n
+\t\t\t\t                        animateView.setScaleX(animateView.getScaleX() * scaleFactor);\n
+\t\t\t\t                        animateView.setScaleY(animateView.getScaleY() * scaleFactor);\n
+\t\t\t\t                        updateInfoView();\n
+\t\t\t\t                        return true;\n
+\t\t\t                    }\n
+\t\t                }\n
+\t        );\n
+    }\n\n
+
+    private DynamicAnimation.OnAnimationUpdateListener updateListener = new DynamicAnimation.OnAnimationUpdateListener() {\n
+\t        @Override\n
+\t        public void onAnimationUpdate(DynamicAnimation animation, float value, float velocity) {\n
+\t\t            updateInfoView();\n
+\t        }\n
+    };\n\n
+
+    public void updateInfoView(){\n
+\t\t        if (animateView != null &amp;&amp; infoView != null) {\n
+\t\t\t            infoView.setText(String.format(Locale.getDefault(), "%.2f", animateView.getScaleX()));\n
+\t\t        }\n
+\t    }\n
+}
+    </string>
+
+    <string name="description_position_spring">Spring force Position</string>
+    <string name="description_rotation_spring">Spring force rotation</string>
+    <string name="description_scales_spring">Spring force scales</string>
+    <string name="lorem">lorem</string>
+</resources>
