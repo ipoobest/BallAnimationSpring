@@ -20,7 +20,7 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, infor, tvDescription;
 
-    public static float dampingValue, stiffnessValue;
+    public static float dampingValue = 0.1f, stiffnessValue = 100;
 
 
     @Override
@@ -62,10 +62,10 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
             int progressValue = progress;
-            if(progressValue != 0){
+            if (progressValue != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }

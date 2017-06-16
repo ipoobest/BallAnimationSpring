@@ -18,7 +18,7 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, infor, tvDescription;
 
-    public static float dampingValue, stiffnessValue;
+    public static float dampingValue = 0.1f, stiffnessValue = 100;
 
 
     @Override
