@@ -54,8 +54,6 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         sbStiffness.setOnSeekBarChangeListener(this);
 
 
-
-
 //        CodeView codeView = (CodeView) findViewById(R.id.code_view);
 //        codeView.setCode(getString(R.string.listing_position_spring));
 
