@@ -35,7 +35,7 @@ public class ScaleSpringAnimation {
         this.animateView = animateView;
         // create scaleX and scaleY animations
         scaleXAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_X,
-                INITIAL_SCALE, stiffnessValue, dampingValue);
+                INITIAL_SCALE, SpringForce.STIFFNESS_HIGH, SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
         scaleYAnimation = createSpringAnimation( animateView, SpringAnimation.SCALE_Y,
                 INITIAL_SCALE, stiffnessValue, dampingValue);
         updateInfoView();

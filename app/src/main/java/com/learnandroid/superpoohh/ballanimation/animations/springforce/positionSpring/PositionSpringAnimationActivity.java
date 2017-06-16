@@ -18,7 +18,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, tvDescription;
 
-    public static float dampingValue, stiffnessValue;
+    public static float dampingValue = 0.1f, stiffnessValue = 100;
 
 
     @Override
