@@ -55,7 +55,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
 
 
-        //TODO: callback function
+        //TODO:
 //        CodeView codeView = (CodeView) findViewById(R.id.code_view);
 //        codeView.setCode(getString(R.string.listing_position_spring));
 
