@@ -1,7 +1,6 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring;
 
 import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -43,10 +42,11 @@ public class PositionSpringAnimation {
         }
     };
 
+
     private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getActionMasked()){
+            switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
                     // capture the difference between view's top left corner and touch point
                     dX = v.getX() - event.getRawX();

@@ -1,15 +1,15 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.positionSpring;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.learnandroid.superpoohh.ballanimation.R;
 
 import io.github.kbiakov.codeview.CodeView;
+import io.github.kbiakov.codeview.adapters.Options;
 
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -44,7 +44,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         sbStiffness.setOnSeekBarChangeListener(this);
 
         CodeView codeView = (CodeView) findViewById(R.id.code_view);
-        codeView.setCode(getString(R.string.listing_position_spring));
+        codeView.setOptions(Options.Default.get(this)
+                .withCode(getString(R.string.listing_position_spring))
+                .withLanguage("java"));
+
 
         animateView.setImageResource(R.drawable.pokeball);
         PositionSpringAnimation positionSpringAnimation =
@@ -55,10 +58,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
             int progressValue = progress;
-            if(progressValue != 0){
+            if (progressValue != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }
