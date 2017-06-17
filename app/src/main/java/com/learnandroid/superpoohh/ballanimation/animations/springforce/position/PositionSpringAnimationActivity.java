@@ -13,17 +13,15 @@ import hugo.weaving.DebugLog;
 
 @DebugLog
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
     private Button dialogDescription;
-    private float damping, stiffness;
     private TextView tvDamping, tvStiffness, tvDescription;
 
+    private float damping, stiffness;
 
-    PositionSpringAnimation positionSpringAnimation;
+    private PositionSpringAnimation positionSpringAnimation;
 //    BottomSheetDialogFragment BottomSheet;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +44,12 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         tvDescription.setText(R.string.description_position_spring);
 
 
-
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
 
 
 //        CodeView codeView = (CodeView) findViewById(R.id.code_view);
 //        codeView.setCode(getString(R.string.listing_position_spring));
-
 
 
         animateView.setImageResource(R.drawable.pokeball);
@@ -64,10 +60,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
             float dampingValue;
-            if(progress != 0){
+            if (progress != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDamping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDamping.setText("0");
             }
