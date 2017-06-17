@@ -1,19 +1,16 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.position;
 
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
-import com.learnandroid.superpoohh.ballanimation.fragment.DescriptionBottomSheetDialogFragment;
 
 import hugo.weaving.DebugLog;
-import io.github.kbiakov.codeview.CodeView;
+
 @DebugLog
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -21,7 +18,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     private SeekBar sbDamping, sbStiffness;
     private Button dialogDescription;
     private float damping, stiffness;
-    private TextView tvDimping, tvStiffness, tvDescription;
+    private TextView tvDamping, tvStiffness, tvDescription;
 
 
     PositionSpringAnimation positionSpringAnimation;
@@ -43,7 +40,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         sbDamping = (SeekBar) findViewById(R.id.sb_damping);
         sbStiffness = (SeekBar) findViewById(R.id.sb_stiffness);
 
-        tvDimping = (TextView) findViewById(R.id.tv_Dimping);
+        tvDamping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvDescription.setText(R.string.description_position_spring);
@@ -69,10 +66,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
             float dampingValue;
             if(progress != 0){
                 dampingValue = (float) (progress / 10.0);
-                tvDimping.setText(String.valueOf(dampingValue));
+                tvDamping.setText(String.valueOf(dampingValue));
             }else {
                 dampingValue = 0.05f;
-                tvDimping.setText("0");
+                tvDamping.setText("0");
             }
             positionSpringAnimation.setDampingValue(dampingValue);
         } else if (seekBar == sbStiffness) {
