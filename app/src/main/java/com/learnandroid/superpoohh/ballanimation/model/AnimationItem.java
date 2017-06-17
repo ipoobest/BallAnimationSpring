@@ -7,10 +7,10 @@ import android.content.Intent;
  */
 
 public class AnimationItem {
-    private  String mTitle, mDescription;
-    private  Intent mIntent;
+    private String mTitle, mDescription;
+    private Intent mIntent;
 
-    public AnimationItem(String title,String Description, android.content.Intent intent) {
+    public AnimationItem(String title, String Description,Intent intent) {
         mTitle = title;
         mIntent = intent;
         mDescription = Description;
