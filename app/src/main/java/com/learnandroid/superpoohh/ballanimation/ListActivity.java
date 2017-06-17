@@ -1,9 +1,9 @@
 package com.learnandroid.superpoohh.ballanimation;
 
 import android.content.Intent;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.learnandroid.superpoohh.ballanimation.adapter.AnimationAdapter;
@@ -11,39 +11,40 @@ import com.learnandroid.superpoohh.ballanimation.animations.springforce.position
 import com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation.RotationSpringAnimationActivity;
 import com.learnandroid.superpoohh.ballanimation.animations.springforce.scale.ScaleSpringAnimationActivity;
 import com.learnandroid.superpoohh.ballanimation.model.AnimationItem;
-import java.util.ArrayList;
+
+import java.util.Arrays;
 import java.util.List;
 
-import hugo.weaving.DebugLog;
-
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements AnimationAdapter.AnimationItemClickListener {
+    private RecyclerView recyclerView;
+    private AnimationAdapter animationAdapter;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new android.support.v7.widget.LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<AnimationItem> items = new ArrayList<>();
+        animationAdapter = new AnimationAdapter(createAnimationItemList());
+        animationAdapter.setAnimationClickListener(this);
+        recyclerView.setAdapter(animationAdapter);
+    }
 
+    @Override
+    public void onAnimationItemClick(AnimationItem item) {
+        startActivity(item.getIntent());
+    }
 
-        items.add(new AnimationItem(getString(R.string.position),"hello",
-                new Intent(this, PositionSpringAnimationActivity.class)));
-
-
-        items.add(new AnimationItem(getString(R.string.rotation),"hello",
-                new Intent(this, RotationSpringAnimationActivity.class)));
-
-        items.add(new AnimationItem(getString(R.string.scale),"hello",
-                new Intent(this, ScaleSpringAnimationActivity.class)));
-
-        recyclerView.setAdapter(new AnimationAdapter(items, this));
-
-
-
-
+    private List<AnimationItem> createAnimationItemList() {
+        return Arrays.asList(
+                new AnimationItem(getString(R.string.position), "hello",
+                        new Intent(this, PositionSpringAnimationActivity.class)),
+                new AnimationItem(getString(R.string.rotation), "hello",
+                        new Intent(this, RotationSpringAnimationActivity.class)),
+                new AnimationItem(getString(R.string.scale), "hello",
+                        new Intent(this, ScaleSpringAnimationActivity.class))
+        );
     }
 }
