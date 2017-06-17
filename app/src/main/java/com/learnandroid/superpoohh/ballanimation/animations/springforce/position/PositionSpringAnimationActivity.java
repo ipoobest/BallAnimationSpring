@@ -28,10 +28,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_position_spring_animation);
 
-        innitInstance();
+        initInstance();
     }
 
-    private void innitInstance() {
+    private void initInstance() {
 
         animateView = (ImageView) findViewById(R.id.animateView);
 
