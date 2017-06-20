@@ -45,7 +45,6 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
     }
 
-
     private void initInstance() {
 
         animateView = (ImageView) findViewById(R.id.animateView);
