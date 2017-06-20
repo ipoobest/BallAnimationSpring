@@ -203,9 +203,17 @@
 
         </RelativeLayout>
 
-
+        <Button
+            android:textColor="#fff"
+            android:background="@color/colorAccent"
+            android:id="@+id/dialogBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:text="Code" />
+        
     </LinearLayout>
 
-    <include layout="@layout/bottom_sheet" />
+
 
 </android.support.design.widget.CoordinatorLayout>

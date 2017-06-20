@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
 
 import com.learnandroid.superpoohh.ballanimation.adapter.AnimationAdapter;
 import com.learnandroid.superpoohh.ballanimation.animations.springforce.position.PositionSpringAnimationActivity;
@@ -22,6 +23,7 @@ public class ListActivity extends AppCompatActivity implements AnimationAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.list);

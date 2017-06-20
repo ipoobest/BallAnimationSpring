@@ -9,19 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListActivity">
+
+        <activity
+            android:name=".view.SplashScreen"
+            android:theme="@style/AppThemeOne">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".animations.springforce.position.PositionSpringAnimationActivity"
-            android:label="PositionSpring"/>
-        <activity android:name=".animations.springforce.rotation.RotationSpringAnimationActivity"
-            android:label="RotationSpring"/>
-        <activity android:name=".animations.springforce.scale.ScaleSpringAnimationActivity"
-            android:label="ScaleSpring"></activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="BallAnimation" />
+        <activity
+            android:name=".animations.springforce.position.PositionSpringAnimationActivity"
+            android:label="PositionSpring" />
+        <activity
+            android:name=".animations.springforce.rotation.RotationSpringAnimationActivity"
+            android:label="RotationSpring" />
+        <activity
+            android:name=".animations.springforce.scale.ScaleSpringAnimationActivity"
+            android:label="ScaleSpring" />
     </application>
 
 </manifest>

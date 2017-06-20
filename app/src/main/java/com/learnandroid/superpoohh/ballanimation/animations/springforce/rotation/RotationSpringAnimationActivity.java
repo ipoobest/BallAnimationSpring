@@ -1,21 +1,26 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation;
 
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
+import com.learnandroid.superpoohh.ballanimation.fragment.RotationBottomSheetDialogFragment;
 
-import io.github.kbiakov.codeview.CodeView;
-
-public class RotationSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+public class RotationSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
     private float damping, stiffness;
     private TextView tvDimping, tvStiffness, infor, tvDescription;
+    private BottomSheetDialogFragment dialogBottomSheet;
+    private Button dialogbutton;
 
     RotationSpringAnimation rotationSpringAnimation;
 
@@ -24,6 +29,9 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rotation_spring_animation);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         innitInstances();
 
@@ -39,15 +47,12 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
         sbDamping = (SeekBar) findViewById(R.id.sb_damping);
         sbStiffness = (SeekBar) findViewById(R.id.sb_stiffness);
 
+        dialogBottomSheet = RotationBottomSheetDialogFragment.newInstance("Modal Bottom Sheet");
+        dialogbutton = (Button) findViewById(R.id.dialogBottom);
+        dialogbutton.setOnClickListener(this);
 
         tvDimping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
-        tvDescription = (TextView) findViewById(R.id.tv_description);
-        tvDescription.setText(R.string.description_rotation_spring);
-
-
-        CodeView codeView = (CodeView) findViewById(R.id.code_view);
-        codeView.setCode(getString(R.string.listing_rotation_spring));
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
@@ -75,6 +80,15 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
         }
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -84,5 +98,10 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        dialogBottomSheet.show(getSupportFragmentManager(), dialogBottomSheet.getTag());
     }
 }

@@ -6,19 +6,21 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
+
+import io.github.kbiakov.codeview.CodeView;
 
 /**
  * Created by superpoohh on 6/16/2017.
  */
 
-public class DescriptionBottomSheetDialogFragment extends BottomSheetDialogFragment {
+public class PositionBottomSheetDialogFragment extends BottomSheetDialogFragment {
     String mString;
+    CodeView codeView;
 
-   public static DescriptionBottomSheetDialogFragment newInstance(String string) {
-        DescriptionBottomSheetDialogFragment fragment = new DescriptionBottomSheetDialogFragment();
+   public static PositionBottomSheetDialogFragment newInstance(String string) {
+        PositionBottomSheetDialogFragment fragment = new PositionBottomSheetDialogFragment();
         Bundle args = new Bundle();
         args.putString("string", string);
         fragment.setArguments(args);
@@ -29,13 +31,34 @@ public class DescriptionBottomSheetDialogFragment extends BottomSheetDialogFragm
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mString = getArguments().getString("string");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bottom_dialog_sheet, container, false);
+        View v = inflater.inflate(R.layout.bottom_sheet_test, container, false);
+        codeView = (CodeView) v.findViewById(R.id.code_view1);
+        codeView.setCode(getString(R.string.listing_position_spring), "java");
+
+
         return v;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //save state
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState !=null){
+
+        //restore state
+
+        }
+    }
 }
