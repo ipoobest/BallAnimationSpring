@@ -1,8 +1,9 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation;
 
+import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -11,17 +12,20 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
-import com.learnandroid.superpoohh.ballanimation.fragment.RotationBottomSheetDialogFragment;
+
+import io.github.kbiakov.codeview.CodeView;
 
 public class RotationSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-    private ImageView animateView;
+    private ImageView ivAnimateRotation;
     private SeekBar sbDamping, sbStiffness;
-    private float damping, stiffness;
-    private TextView tvDimping, tvStiffness, infor, tvDescription;
+    private TextView tvDimping, tvStiffness, tvInformation, tvDescription;
     private BottomSheetDialogFragment dialogBottomSheet;
-    private Button dialogbutton;
+    private Button btnShowCode;
+    private View layoutBottom;
+    private CodeView codevRotation;
 
+    private BottomSheetBehavior bottomSheetBehavior;
     RotationSpringAnimation rotationSpringAnimation;
 
 
@@ -33,32 +37,32 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        innitInstances();
-
-
-        animateView.setImageResource(R.drawable.pokeball);
-         rotationSpringAnimation =
-                new RotationSpringAnimation(animateView, infor);
+        initInstances();
+        ivAnimateRotation.setImageResource(R.drawable.pokeball);
+        rotationSpringAnimation = new RotationSpringAnimation(ivAnimateRotation, tvInformation);
     }
 
 
-
-    private void innitInstances() {
-        animateView = (ImageView) findViewById(R.id.animateView);
-        infor = (TextView) findViewById(R.id.information);
+    private void initInstances() {
+        ivAnimateRotation = (ImageView) findViewById(R.id.animateView);
+        tvInformation = (TextView) findViewById(R.id.information);
 
         sbDamping = (SeekBar) findViewById(R.id.sb_damping);
         sbStiffness = (SeekBar) findViewById(R.id.sb_stiffness);
 
-        dialogBottomSheet = RotationBottomSheetDialogFragment.newInstance("Modal Bottom Sheet");
-        dialogbutton = (Button) findViewById(R.id.dialogBottom);
-        dialogbutton.setOnClickListener(this);
+        btnShowCode = (Button) findViewById(R.id.dialogBottom);
+        btnShowCode.setOnClickListener(this);
 
         tvDimping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
+        layoutBottom = findViewById(R.id.btms_code);
+
+        codevRotation = (CodeView) findViewById(R.id.code_view);
+        codevRotation.setCode(getString(R.string.listing_rotation_spring));
+        bottomSheetBehavior = BottomSheetBehavior.from(layoutBottom);
 
     }
 
@@ -67,10 +71,10 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
             float dampingValue;
-            if(progress != 0){
+            if (progress != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }
@@ -83,6 +87,7 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
         }
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -105,7 +110,14 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
-        dialogBottomSheet.show(getSupportFragmentManager(), dialogBottomSheet.getTag());
+        if (v == btnShowCode) {
+            if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            } else {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        }
+
     }
 
 }
