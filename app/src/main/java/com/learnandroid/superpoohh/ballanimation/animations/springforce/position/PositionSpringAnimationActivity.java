@@ -38,7 +38,13 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
 
         initInstance();
+        animation();
     }
+
+    private void animation() {
+
+    }
+
 
     private void initInstance() {
 
@@ -69,6 +75,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
         animateView.setImageResource(R.drawable.pokeball);
         positionSpringAnimation = new PositionSpringAnimation(animateView);
+
     }
 
     @Override

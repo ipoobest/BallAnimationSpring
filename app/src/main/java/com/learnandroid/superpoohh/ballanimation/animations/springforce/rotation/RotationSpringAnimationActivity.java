@@ -35,10 +35,13 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
 
         innitInstances();
 
+
         animateView.setImageResource(R.drawable.pokeball);
          rotationSpringAnimation =
                 new RotationSpringAnimation(animateView, infor);
     }
+
+
 
     private void innitInstances() {
         animateView = (ImageView) findViewById(R.id.animateView);
@@ -104,4 +107,5 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     public void onClick(View v) {
         dialogBottomSheet.show(getSupportFragmentManager(), dialogBottomSheet.getTag());
     }
+
 }
