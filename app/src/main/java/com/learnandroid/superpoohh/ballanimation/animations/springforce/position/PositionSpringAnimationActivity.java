@@ -25,7 +25,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     private TextView tvDamping, tvStiffness;
     private Button dialogbutton;
     private PositionSpringAnimation positionSpringAnimation;
-//    BottomSheetDialogFragment BottomSheet;
+
 
 
     @Override
