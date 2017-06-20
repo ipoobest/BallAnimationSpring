@@ -11,18 +11,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
-import com.learnandroid.superpoohh.ballanimation.fragment.RotationBottomSheetDialogFragment;
+import com.learnandroid.superpoohh.ballanimation.fragment.PositionBottomSheetDialogFragment;
 
-import hugo.weaving.DebugLog;
 
-@DebugLog
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
-    private Button dialogDescription;
     private BottomSheetDialogFragment dialogBottomSheet;
-    private float damping, stiffness;
-    private TextView tvDamping, tvStiffness;
+    private TextView tvDamping, tvStiffness, tvDescription;
     private Button dialogbutton;
     private PositionSpringAnimation positionSpringAnimation;
 
@@ -52,7 +48,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         sbDamping = (SeekBar) findViewById(R.id.sb_damping);
         sbStiffness = (SeekBar) findViewById(R.id.sb_stiffness);
 
-        dialogBottomSheet = RotationBottomSheetDialogFragment.newInstance("Modal Bottom Sheet");
+        dialogBottomSheet = PositionBottomSheetDialogFragment.newInstance("Modal Bottom Sheet");
         dialogbutton = (Button) findViewById(R.id.dialogBottom);
         dialogbutton.setOnClickListener(this);
 
@@ -60,10 +56,9 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
 
 
+
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
-
-
 
 
         animateView.setImageResource(R.drawable.pokeball);

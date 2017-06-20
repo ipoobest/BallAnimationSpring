@@ -41,11 +41,11 @@ public class ListActivity extends AppCompatActivity implements AnimationAdapter.
 
     private List<AnimationItem> createAnimationItemList() {
         return Arrays.asList(
-                new AnimationItem(getString(R.string.position), "hello",
+                new AnimationItem(getString(R.string.position), "position",
                         new Intent(this, PositionSpringAnimationActivity.class)),
-                new AnimationItem(getString(R.string.rotation), "hello",
+                new AnimationItem(getString(R.string.rotation), "rotation",
                         new Intent(this, RotationSpringAnimationActivity.class)),
-                new AnimationItem(getString(R.string.scale), "hello",
+                new AnimationItem(getString(R.string.scale), "scale",
                         new Intent(this, ScaleSpringAnimationActivity.class))
         );
     }
