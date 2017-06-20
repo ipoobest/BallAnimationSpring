@@ -59,17 +59,11 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
         tvDamping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
-//        tvDescription = (TextView) findViewById(R.id.tv_description);
-//        tvDescription.setText(R.string.description_position_spring);
-
 
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
 
-
-//        CodeView codeView = (CodeView) findViewById(R.id.code_view);
-//        codeView.setCode(getString(R.string.listing_position_spring));
 
 
 
