@@ -6,6 +6,7 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
 
@@ -18,6 +19,7 @@ import io.github.kbiakov.codeview.CodeView;
 public class ScaleBottomSheetDialogFragment extends BottomSheetDialogFragment {
     String mString;
     CodeView codeView;
+    TextView tvDescription;
 
    public static ScaleBottomSheetDialogFragment newInstance(String string) {
         ScaleBottomSheetDialogFragment fragment = new ScaleBottomSheetDialogFragment();
@@ -38,6 +40,8 @@ public class ScaleBottomSheetDialogFragment extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheet_test, container, false);
+        tvDescription = (TextView) v.findViewById(R.id.tv_description);
+        tvDescription.setText("Scale");
         codeView = (CodeView) v.findViewById(R.id.code_view1);
         codeView.setCode(getString(R.string.listing_scale_spring), "java");
 
