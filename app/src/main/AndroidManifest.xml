@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".ListActivity"
-            android:label="BallAnimation" />
+            android:label="SpringAnimation" />
         <activity
             android:name=".animations.springforce.position.PositionSpringAnimationActivity"
             android:label="PositionSpring" />

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SpringAnimation</string>
-    <string name="position">PositionSpringAnimation</string>
-    <string name="rotation">RotationSpringAnimation</string>
-    <string name="scale">ScaleSpringAnimation</string>
+    force<string name="position">PositionSpring</string>
+    force<string name="rotation">RotationSpring</string>
+    force<string name="scale">ScaleSpring</string>
 
     <string name="listing_position_spring">
     public class PositionSpringAnimation { \n

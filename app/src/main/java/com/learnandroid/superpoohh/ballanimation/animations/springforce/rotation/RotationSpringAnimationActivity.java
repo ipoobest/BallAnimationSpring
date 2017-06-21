@@ -1,9 +1,9 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation;
 
-import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.learnandroid.superpoohh.ballanimation.R;
 
 import io.github.kbiakov.codeview.CodeView;
+
+
 
 public class RotationSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
@@ -40,9 +42,14 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
         initInstances();
         ivAnimateRotation.setImageResource(R.drawable.pokeball);
         rotationSpringAnimation = new RotationSpringAnimation(ivAnimateRotation, tvInformation);
+
+        demoAnimation();
+
     }
 
+    private void demoAnimation() {
 
+    }
     private void initInstances() {
         ivAnimateRotation = (ImageView) findViewById(R.id.animateView);
         tvInformation = (TextView) findViewById(R.id.information);
@@ -55,6 +62,8 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
 
         tvDimping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
+        tvDescription = (TextView) findViewById(R.id.tv_description);
+        tvDescription.setText("Rolation Animation code");
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);

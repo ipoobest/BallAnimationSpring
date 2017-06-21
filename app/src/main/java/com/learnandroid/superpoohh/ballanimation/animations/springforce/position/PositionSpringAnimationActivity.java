@@ -1,5 +1,9 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.position;
 
+import android.support.animation.DynamicAnimation;
+import android.support.animation.SpringAnimation;
+import android.support.animation.SpringForce;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,15 +17,22 @@ import android.widget.TextView;
 import com.learnandroid.superpoohh.ballanimation.R;
 import com.learnandroid.superpoohh.ballanimation.fragment.PositionBottomSheetDialogFragment;
 
+import io.github.kbiakov.codeview.CodeView;
+
+import static android.support.animation.SpringForce.DAMPING_RATIO_HIGH_BOUNCY;
+import static android.support.animation.SpringForce.STIFFNESS_VERY_LOW;
+
 
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
     private BottomSheetDialogFragment dialogBottomSheet;
     private TextView tvDamping, tvStiffness, tvDescription;
-    private Button dialogbutton;
+    private Button btnShowCode;
+    private View layoutBottom;
+    private CodeView codevRotation;
+    private BottomSheetBehavior bottomSheetBehavior;
     private PositionSpringAnimation positionSpringAnimation;
-
 
 
     @Override
@@ -32,14 +43,14 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         initInstance();
-        animation();
+        demoAnimation();
     }
 
-    private void animation() {
+    private void demoAnimation() {
 
     }
+
 
     private void initInstance() {
 
@@ -47,15 +58,19 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
         sbDamping = (SeekBar) findViewById(R.id.sb_damping);
         sbStiffness = (SeekBar) findViewById(R.id.sb_stiffness);
+        btnShowCode = (Button) findViewById(R.id.dialogBottom);
+        btnShowCode.setOnClickListener(this);
 
-        dialogBottomSheet = PositionBottomSheetDialogFragment.newInstance("Modal Bottom Sheet");
-        dialogbutton = (Button) findViewById(R.id.dialogBottom);
-        dialogbutton.setOnClickListener(this);
+        layoutBottom = findViewById(R.id.btms_code);
+
+        codevRotation = (CodeView) findViewById(R.id.code_view);
+        codevRotation.setCode(getString(R.string.listing_position_spring));
+        bottomSheetBehavior = BottomSheetBehavior.from(layoutBottom);
 
         tvDamping = (TextView) findViewById(R.id.tv_Dimping);
         tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
-
-
+        tvDescription = (TextView) findViewById(R.id.tv_description);
+        tvDescription.setText("Position Animation code");
 
         sbDamping.setOnSeekBarChangeListener(this);
         sbStiffness.setOnSeekBarChangeListener(this);
@@ -73,7 +88,7 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
             if (progress != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDamping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDamping.setText("0");
             }
@@ -111,6 +126,10 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
-        dialogBottomSheet.show(getSupportFragmentManager(), dialogBottomSheet.getTag());
+        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
     }
 }
