@@ -1,6 +1,5 @@
 package com.learnandroid.superpoohh.ballanimation.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,11 @@ import java.util.List;
 
 public class AnimationAdapter extends RecyclerView.Adapter<AnimationAdapter.AnimationHolder> {
 
-    private final List<AnimationItem> mItems;
-    private final Context mContext;
+    private List<AnimationItem> mItems;
+    private AnimationItemClickListener listener;
 
-    public AnimationAdapter(List<AnimationItem> mItems, Context mContext) {
+    public AnimationAdapter(List<AnimationItem> mItems) {
         this.mItems = mItems;
-        this.mContext = mContext;
     }
 
     @Override
@@ -35,9 +33,10 @@ public class AnimationAdapter extends RecyclerView.Adapter<AnimationAdapter.Anim
 
     @Override
     public void onBindViewHolder(AnimationHolder holder, int position) {
-        holder.mTitle.setText(mItems.get(position).getTitle());
-        holder.mDescription.setText(mItems.get(position).getDescription());
-
+        AnimationItem item = mItems.get(position);
+        holder.setTitle(item.getTitle());
+        holder.setDescription(item.getDescription());
+        holder.setupItemViewClickListener();
     }
 
     @Override
@@ -45,27 +44,40 @@ public class AnimationAdapter extends RecyclerView.Adapter<AnimationAdapter.Anim
         return mItems == null ? 0 : mItems.size();
     }
 
+    public void setAnimationClickListener(AnimationItemClickListener listener) {
+        this.listener = listener;
+    }
 
+    public interface AnimationItemClickListener {
+        void onAnimationItemClick(AnimationItem item);
+    }
 
+    class AnimationHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
+        private TextView tvTitle, tvDescription;
 
-
-        class AnimationHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
-            public final TextView mTitle,mDescription;
-
-            public AnimationHolder(android.view.View itemView) {
-                super(itemView);
-                mTitle = (TextView) itemView.findViewById(R.id.tv_name);
-                mDescription = (TextView) itemView.findViewById(R.id.tv_description);
-
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mContext.startActivity(mItems.get(getAdapterPosition()).getIntent());
-                    }
-                });
-            }
+        public AnimationHolder(View itemView) {
+            super(itemView);
+            tvTitle = (TextView) itemView.findViewById(R.id.tv_name);
+            tvDescription = (TextView) itemView.findViewById(R.id.tv_description);
         }
 
+        public void setTitle(String title) {
+            tvTitle.setText(title);
+        }
 
+        public void setDescription(String description) {
+            tvDescription.setText(description);
+        }
 
+        public void setupItemViewClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onAnimationItemClick(mItems.get(getAdapterPosition()));
+                    }
+                }
+            });
+        }
+    }
 }
