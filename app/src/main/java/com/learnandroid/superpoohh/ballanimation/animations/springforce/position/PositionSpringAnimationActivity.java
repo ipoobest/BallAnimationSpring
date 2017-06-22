@@ -1,5 +1,7 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.position;
 
+import android.animation.ObjectAnimator;
+import android.os.Handler;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
 import android.support.animation.SpringForce;
@@ -15,15 +17,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.learnandroid.superpoohh.ballanimation.R;
-import com.learnandroid.superpoohh.ballanimation.fragment.PositionBottomSheetDialogFragment;
 
 import io.github.kbiakov.codeview.CodeView;
 
-import static android.support.animation.SpringForce.DAMPING_RATIO_HIGH_BOUNCY;
-import static android.support.animation.SpringForce.STIFFNESS_VERY_LOW;
-
+import static com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil.createSpringAnimation;
 
 public class PositionSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
     private BottomSheetDialogFragment dialogBottomSheet;
@@ -33,6 +33,8 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     private CodeView codevRotation;
     private BottomSheetBehavior bottomSheetBehavior;
     private PositionSpringAnimation positionSpringAnimation;
+
+    private SpringAnimation springAnimation, positionX, positionY;
 
 
     @Override
@@ -48,6 +50,20 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
     }
 
     private void demoAnimation() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                positionX = createSpringAnimation(animateView,
+//                        SpringAnimation.TRANSLATION_X, 150f,
+//                        500, 0.2f);
+                positionY = createSpringAnimation(animateView,
+                        SpringAnimation.TRANSLATION_Y, 200f,
+                        100, 0.3f);
+//                positionX.start();
+                positionY.start();
+            }
+        }, 1500);
 
     }
 
@@ -132,4 +148,6 @@ public class PositionSpringAnimationActivity extends AppCompatActivity implement
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
     }
+
+
 }

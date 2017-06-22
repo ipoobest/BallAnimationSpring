@@ -1,5 +1,7 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.rotation;
 
+import android.os.Handler;
+import android.support.animation.SpringAnimation;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.learnandroid.superpoohh.ballanimation.R;
 
 import io.github.kbiakov.codeview.CodeView;
 
+import static com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil.createSpringAnimation;
 
 
 public class RotationSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -25,6 +28,7 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     private BottomSheetDialogFragment dialogBottomSheet;
     private Button btnShowCode;
     private View layoutBottom;
+    private SpringAnimation rotationAnimation;
     private CodeView codevRotation;
 
     private BottomSheetBehavior bottomSheetBehavior;
@@ -48,8 +52,21 @@ public class RotationSpringAnimationActivity extends AppCompatActivity implement
     }
 
     private void demoAnimation() {
-
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+        rotationAnimation = createSpringAnimation(ivAnimateRotation,
+                SpringAnimation.ROTATION, 360f,
+                200, 0.4f);
+        rotationAnimation.start();
+            }
+        }, 2000);
     }
+
+
+
+
     private void initInstances() {
         ivAnimateRotation = (ImageView) findViewById(R.id.animateView);
         tvInformation = (TextView) findViewById(R.id.information);

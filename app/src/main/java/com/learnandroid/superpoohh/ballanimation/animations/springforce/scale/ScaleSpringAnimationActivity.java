@@ -1,5 +1,7 @@
 package com.learnandroid.superpoohh.ballanimation.animations.springforce.scale;
 
+import android.os.Handler;
+import android.support.animation.SpringAnimation;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,17 +16,21 @@ import com.learnandroid.superpoohh.ballanimation.R;
 
 import io.github.kbiakov.codeview.CodeView;
 
+import static com.learnandroid.superpoohh.ballanimation.animations.SpringAnimationUtil.createSpringAnimation;
+
 public class ScaleSpringAnimationActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     private ImageView animateView;
     private SeekBar sbDamping, sbStiffness;
-    private float damping, stiffness;
     private TextView tvDimping, tvStiffness, infor, tvDescription;
+    SpringAnimation scaleXAnimation;
+    SpringAnimation scaleYAnimation;
     ScaleSpringAnimation scaleSpringAnimation;
     private View layoutBottom;
     private CodeView codevRotation;
     private Button btnShowCode;
     private BottomSheetBehavior bottomSheetBehavior;
+    private float dampingRadio = 0.1f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +41,27 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         innitInstances();
-
+        demoAnimation();
         animateView.setImageResource(R.drawable.pokeball);
         scaleSpringAnimation =
                 new ScaleSpringAnimation(animateView, infor);
-        demoAnimation();
+
     }
 
     private void demoAnimation() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // create scaleX and scaleY animations
+                scaleXAnimation = createSpringAnimation(animateView, SpringAnimation.SCALE_X,
+                        2f, 200f, 0.1f);
+                scaleYAnimation = createSpringAnimation(animateView, SpringAnimation.SCALE_Y,
+                        2f, 1000f, 0.1f);
+                scaleXAnimation.start();
+                scaleYAnimation.start();
+            }
+        }, 1500);
     }
 
     private void innitInstances() {
@@ -58,6 +77,7 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
 
 
         tvDimping = (TextView) findViewById(R.id.tv_Dimping);
+        tvStiffness = (TextView) findViewById(R.id.tv_stiffness);
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvDescription.setText("Scale Animation code");
 
@@ -75,10 +95,10 @@ public class ScaleSpringAnimationActivity extends AppCompatActivity implements S
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar == sbDamping) {
             float dampingValue;
-            if(progress != 0){
+            if (progress != 0) {
                 dampingValue = (float) (progress / 10.0);
                 tvDimping.setText(String.valueOf(dampingValue));
-            }else {
+            } else {
                 dampingValue = 0.05f;
                 tvDimping.setText("0");
             }
