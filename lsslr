@@ -1,0 +1,163 @@
+[33mcommit 234e193ca151d3e69386c5eb9dcf151ebfca8c19[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Thu Jun 22 10:23:46 2017 +0700
+
+    demo animation
+
+[33mcommit c9a4ba3307ff1b2872d3e3b808c3eb2247c731ae[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Wed Jun 21 11:16:47 2017 +0700
+
+    dialog behavior
+
+[33mcommit 42fa31288cdbc3517f50de5e9f6b0c1e92d29c85[m
+Merge: 7b454f3 ef05a5d
+Author: tanapruk <trust@nextzy.com>
+Date:   Tue Jun 20 20:47:43 2017 +0700
+
+    Merge branch 'develop' of https://github.com/ipoobest/BallAnimationSpring into develop
+
+[33mcommit 7b454f3a56f7138dd5484ff70a41031b9df78683[m
+Author: tanapruk <trust@nextzy.com>
+Date:   Tue Jun 20 20:47:37 2017 +0700
+
+    Adjust dialog behavior
+
+[33mcommit ef05a5daa34423c9e0829ea3aa8e86dbb22f6c78[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 16:07:25 2017 +0700
+
+    wording
+
+[33mcommit fd62a4dec359f17c900b4d4c90d816436ab075fc[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 14:07:51 2017 +0700
+
+    up file bottom sheet test
+
+[33mcommit f0b57a75d9dc2adf373c85ab5ce5915eba25e208[m
+Merge: cc244eb 5b6229d
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 14:06:04 2017 +0700
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #       .gitignore
+
+[33mcommit cc244eb1255afc68079477580e372ae0cacaf8b1[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 14:04:52 2017 +0700
+
+    up file bottom sheet test
+
+[33mcommit 8c6ea36ff454463e4a9b1eb0519d0255d4713370[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 13:58:55 2017 +0700
+
+    up file bottom sheet test
+
+[33mcommit 8347f41a7003149784997bd28d0b73217ca1ecc9[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 13:56:08 2017 +0700
+
+    up file bottom sheet test
+
+[33mcommit 5b6229ddaf1c5d51686a5cfcf9c1484e93df6fc2[m
+Author: tanapruk <trust@nextzy.com>
+Date:   Tue Jun 20 12:36:37 2017 +0700
+
+    Add .gitignore
+
+[33mcommit 4645a3c7f66690e523d0bf47527ea5ccd73d0f91[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Tue Jun 20 11:45:44 2017 +0700
+
+    splash screen, back button, button effect, bottom sheets dialog fragment
+
+[33mcommit 0d0e6e4fce50de6859811906dd332c1f0b840cae[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:59:43 2017 +0700
+
+    Fix wrong method name
+
+[33mcommit 41daab809bc8470ab207efa12370e3e3014433a3[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:59:18 2017 +0700
+
+    Rearrange global variable position
+
+[33mcommit 9d81a016edbb3429157e389a44d5c8fb6e59097d[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:58:37 2017 +0700
+
+    Remove unused import class
+    Fix text view instance name
+
+[33mcommit 09225680dab07947def8823db3caa16b28825235[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:56:49 2017 +0700
+
+    Remove context
+    Move animation item click listener to activity class
+    Wrap up generate code for animation item list
+
+[33mcommit 9dfc5e7522fb2b25125c389338c56653465307c9[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:55:03 2017 +0700
+
+    Fix class import
+
+[33mcommit 60d65f6a215ac1eb1a7577355397486dcc6a8500[m
+Author: Akexorcist <akexorcist@gmail.com>
+Date:   Sat Jun 17 21:54:33 2017 +0700
+
+    Update gradle version, make is faster
+
+[33mcommit 3a169307cfacc665f92fc5067125039547625b21[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 17:47:04 2017 +0700
+
+    0.0.2
+
+[33mcommit 12b05999f53dcd21474ca1ac17c07a2b91973ed9[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 17:45:36 2017 +0700
+
+    0.0.3
+
+[33mcommit 79d8101273f30579a1385a2a6815ddb35b513934[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 17:44:10 2017 +0700
+
+    0.0.2
+
+[33mcommit 40e4f7a7c581113ab53743ec6c642b75c90af25e[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 17:42:41 2017 +0700
+
+    0.0.2
+
+[33mcommit ddcb9687b638a4bef275337b9d5efd9f99419ad3[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 17:41:00 2017 +0700
+
+    0.0.2
+
+[33mcommit 395d93116f9ff2b53abd09473d05850436ca9577[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 14:14:18 2017 +0700
+
+    fixed bug bottom_sheet
+
+[33mcommit e98baa946d4fd7817a1d46576c0601a44981e337[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 11:09:08 2017 +0700
+
+    initalize value damping and stiffness value
+
+[33mcommit a76fac3c31c16d12d956d6cdade4c2518732bf2c[m
+Author: poobest <poobest.pooh@gmail.com>
+Date:   Fri Jun 16 10:20:15 2017 +0700
+
+    version 0.0.1
